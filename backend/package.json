@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -L --exec ts-node src/app.ts"
+    "watch": "nodemon --inspect=0.0.0.0:9229 src/app.ts"
   },
   "author": "",
   "license": "ISC",

@@ -1,13 +1,22 @@
-version: "3.8"
 services:
   backend:
     build: ./backend
     container_name: backend_c
     ports:
-      - "4000:4000"
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
+      - 4000:4000
+      - 9229:9229
+    # volumes:
+    #   - ./backend:/app
+    #   - /app/node_modules
+    # command: pnpm watch #override CMD dans le dockerfile car docker-compose n'est utilisé qu'en env de dev ?
+    develop:
+      watch: #remplace l'option volumes (de docker-compose.yml)
+        - action: sync
+          path: ./backend
+          target: /app
+        - action: rebuild
+          path: ./backend/package.json
+
   frontend:
     build: ./frontend
     container_name: frontend_c
