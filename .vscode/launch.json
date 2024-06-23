@@ -4,7 +4,7 @@
     {
       "type": "node",
       "request": "attach",
-      "name": "Node (Docker)",
+      "name": "Node backend (Docker)",
       "port": 9229,
       "restart": true,
       "remoteRoot": "/app",

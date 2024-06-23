@@ -5,10 +5,6 @@ services:
     ports:
       - 4000:4000
       - 9229:9229
-    # volumes:
-    #   - ./backend:/app
-    #   - /app/node_modules
-    # command: pnpm watch #override CMD dans le dockerfile car docker-compose n'est utilisé qu'en env de dev ?
     develop:
       watch: #remplace l'option volumes (de docker-compose.yml)
         - action: sync
@@ -21,5 +17,11 @@ services:
     build: ./frontend
     container_name: frontend_c
     ports:
-      - "3000:3000"
-    stdin_open: true
+      - 3000:3000
+    develop:
+      watch: #remplace l'option volumes (de docker-compose.yml)
+        - action: sync
+          path: ./frontend
+          target: /app
+        - action: rebuild
+          path: ./frontend/package.json
